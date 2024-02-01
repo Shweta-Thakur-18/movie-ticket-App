@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+    text-align: center;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+.container{
+    width: 70%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+#leftRow ,
+#rightRow {
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+#leftRow > div,
+#rightRow > div {
+ 
+    background-color:red;
+    height:40px;
+    width:40px;
+    margin:10px;
+    display: flex ;
+    justify-content:center;
+    align-items: center;
+    color:#fff;
+    cursor : pointer;
+   
+}
+    </style>
+    
+</head>
+
+<body>
+    <h1>
+        Movie Booking App
+    </h1>
+    <div class="container">
+        <div id="leftRow"></div>
+         <div id="rightRow"></div>
+
+    </div>
+    
+</body>
+</html>
+<script >
+    const leftRow =[
+    [0,0,0,0,0],
+    [0,0,0,0,0],
+    [0,0,0,0,0],
+    [0,0,0,0,0],
+    [0,0,0,0,0]
+]
+
+const rightRow=[
+    [0,0,0,0,0],
+    [0,0,0,0,0],
+    [0,0,0,0,0],
+    [0,0,0,0,0],
+    [0,0,0,0,0]
+]
+
+leftRow.map((e,i)=> {
+    //console.log(e)
+    e.map((e1,ind)=> {
+        const div = document.createElement('div');
+        div.innerText ='L'+ (ind + (5*i) + 1)
+        if(leftRow[i][ind]==0){
+            div.style.background='red'
+
+        }
+
+        else{
+            div.style.background='skyBlue'
+        }
+
+        div.addEventListener('click',()=>{
+            let confirmation=confirm('Are you sure,you want book')
+            if(confirmation){
+                leftRow[i][ind]=1;
+                div.style.background='skyBlue'
+            }
+        })
+        document.getElementById('leftRow').append(div)
+    })
+})
+
+rightRow.map((e,i)=>{
+    //console.log(e)
+    e.map((e1,ind)=>{
+        const div = document.createElement('div');
+        div.innerText ='R'+ (ind + (5 * i) + 1)
+        if(rightRow[i][ind]==0){
+            div.style.background='red'
+
+        }
+        
+        else{
+
+            div.style.background='skyBlue'
+        }
+
+        div.addEventListener('click',() =>{
+            let confirmation = confirm('Are you sure,you want book')
+            if(confirmation){
+                rightRow[i][ind]=1;
+                div.style.background='skyBlue'
+            }
+        })
+        document.getElementById('rightRow').append(div)
+    })
+})
+
+const busSeats = [
+    {
+    seat_type:"sleeper",
+    seat_number:'s1',
+    is_booked:false
+    }
+]
+
+console.log("hello");
+
+</script>
